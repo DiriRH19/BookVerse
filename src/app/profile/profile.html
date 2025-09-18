@@ -1,0 +1,36 @@
+<app-nav></app-nav>
+<main class="profile">
+  <section class="profile__header">
+    <div class="profile__avatar">
+      <img src="https://res.cloudinary.com/dgaxlowpd/image/upload/v1757985780/profile_x37hzy.png" alt="Avatar del usuario" />
+    </div>
+    <div class="profile__info">
+      <h1>Dirison</h1>
+      <p>rdirison@gmailcom</p>
+    </div>
+  </section>
+  <section class="profile__details">
+    <h2>Mis Compras Recientes</h2>
+    @for (purchase of recentBooks(); track purchase.id) {
+      <div class="purchase">
+        <h3>Compra #{{ purchase.id }}</h3>
+        <p>Fecha: {{ purchase.date | date:'short' }}</p>
+        <p>Total: ${{ purchase.total }}</p>
+        <div class="profile__books">
+          @for (book of purchase.items; track book.id) {
+            <div class="profile__book">
+              <img [src]="book.image" [alt]="book.title" />
+              <div class="profile__book-info">
+                <h3>{{ book.title }}</h3>
+                <p>Autor: {{ book.author }}</p>
+                <p>Precio: ${{ book.price }}</p>
+                <p>Cantidad: {{ book.quantity }}</p>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </section>
+</main>
+<app-footer></app-footer>

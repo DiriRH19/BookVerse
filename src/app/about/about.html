@@ -1,0 +1,121 @@
+<app-nav></app-nav>
+<main class="about">
+  <section class="about__hero">
+    <h1>Sobre BookVerse</h1>
+    <p>
+      BookVerse es tu librería online, diseñada para que descubras, explores y compres tus libros favoritos de manera sencilla y segura. 
+      Encontrarás información detallada de cada título, imágenes, calificaciones y la opción de agregarlos a tu carrito para adquirirlos fácilmente.
+    </p>
+    <p>
+      Nuestra misión es acercar la lectura a todos, facilitando el acceso a los mejores libros desde la comodidad de tu hogar.
+    </p>
+    @if (showFullContent()) {
+      <div class="about__extended-content">
+        <h2>Nuestra Historia</h2>
+        <p>
+          BookVerse nació en 2020 durante la pandemia, cuando nos dimos cuenta de que muchas personas necesitaban acceso fácil y seguro a libros. 
+          Lo que comenzó como un proyecto pequeño se ha convertido en una plataforma que conecta a lectores de todo el mundo con sus libros favoritos.
+        </p>
+        <h2>¿Por qué elegir BookVerse?</h2>
+        <div class="about__features">
+          @for (value of values; track value.title) {
+            <div class="about__feature">
+              <div class="about__feature-icon">{{ value.icon }}</div>
+              <h3>{{ value.title }}</h3>
+              <p>{{ value.description }}</p>
+            </div>
+          }
+        </div>
+        <h2>Nuestro Equipo</h2>
+        <p>
+          Detrás de BookVerse hay un equipo apasionado de profesionales que comparten el amor por la lectura y la tecnología. 
+          Cada miembro aporta su experiencia única para crear la mejor experiencia posible para nuestros usuarios.
+        </p>
+        <div class="about__team">
+          @for (member of teamMembers; track member.name) {
+            <div class="about__team-member">
+              <img [src]="member.image" [alt]="member.name" class="about__member-photo">
+              <h3>{{ member.name }}</h3>
+              <p class="about__member-role">{{ member.role }}</p>
+              <p class="about__member-description">{{ member.description }}</p>
+            </div>
+          }
+        </div>
+        <h2>Nuestra Trayectoria</h2>
+        <div class="about__timeline">
+          @for (milestone of milestones; track milestone.year; let i = $index) {
+            <div 
+              class="about__timeline-item"
+              [ngClass]="{
+                'about__timeline-item--even': i % 2 === 0,
+                'about__timeline-item--odd': i % 2 === 1,
+                'about__timeline-item--first': i === 0,
+                'about__timeline-item--last': i === milestones.length - 1
+              }">
+              <div 
+                class="about__timeline-year"
+                [ngClass]="{
+                  'about__timeline-year--highlight': milestone.year === '2024',
+                  'about__timeline-year--milestone': milestone.year === '2021' || milestone.year === '2023'
+                }">
+                {{ milestone.year }}
+              </div>
+              <div 
+                class="about__timeline-content"
+                [ngClass]="{
+                  'about__timeline-content--special': milestone.title === 'IA y Recomendaciones' || milestone.title === 'Sostenibilidad'
+                }">
+                <h3>{{ milestone.title }}</h3>
+                <p>{{ milestone.description }}</p>
+              </div>
+            </div>
+          }
+        </div>
+        <h2>Compromiso Social</h2>
+        <p>
+          En BookVerse creemos que la educación y la lectura son fundamentales para el desarrollo de las sociedades. 
+          Por eso, donamos el 1% de nuestras ventas a programas de alfabetización en comunidades desfavorecidas y 
+          apoyamos a bibliotecas públicas con donaciones de libros.
+        </p>
+        <h2>Innovación Tecnológica</h2>
+        <p>
+          Utilizamos las últimas tecnologías para ofrecerte la mejor experiencia de compra. Nuestro sistema de recomendaciones 
+          basado en inteligencia artificial aprende de tus preferencias para sugerirte libros que realmente te van a gustar. 
+          Además, nuestra plataforma es completamente responsive y funciona perfectamente en cualquier dispositivo.
+        </p>
+        <h2>Contacto y Soporte</h2>
+        <p>
+          Si tienes alguna pregunta, sugerencia o necesitas ayuda, nuestro equipo de soporte está disponible 24/7. 
+          Puedes contactarnos a través de nuestro chat en vivo, email o teléfono. Tu satisfacción es nuestra prioridad.
+        </p>
+      </div>
+    } @else {
+      <div class="about__preview">
+        <p>
+          BookVerse ha revolucionado la forma en que las personas descubren y compran libros online. 
+          Con más de 2 millones de títulos disponibles, recomendaciones personalizadas y un compromiso 
+          inquebrantable con la calidad, nos hemos convertido en la librería online de confianza para 
+          lectores de todo el mundo.
+        </p>
+        <p>
+          Nuestro equipo de expertos en literatura y tecnología trabaja incansablemente para ofrecerte 
+          la mejor experiencia de compra, desde la búsqueda del libro perfecto hasta la entrega en tu hogar.
+        </p>
+      </div>
+    }
+    <button 
+      class="about__toggle-btn" 
+      [ngClass]="{
+        'about__toggle-btn--expanded': showFullContent(),
+        'about__toggle-btn--collapsed': !showFullContent()
+      }"
+      (click)="toggleContent()">
+      @if (showFullContent()) {
+        Ver menos
+      } @else {
+        Ver más
+      }
+    </button>
+  </section>
+</main>
+<app-footer></app-footer>

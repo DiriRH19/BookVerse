@@ -1,0 +1,46 @@
+<app-nav></app-nav>
+<div class="purchase-container">
+  <h2>Formulario de Compra</h2>
+  @if (cartItems.length > 0) {
+    <div class="cart-summary">
+      <h3>Resumen del carrito</h3>
+      <ul>
+        @for (item of cartItems; track item.id) {
+          <li>
+            {{ item.title }} - ${{ item.price }} 
+            @if (item.quantity > 1) {
+              (x{{ item.quantity }})
+            }
+          </li>
+        }
+      </ul>
+      <p>Total: ${{ total }}</p>
+    </div>
+    <form (ngSubmit)="submitOrder()">
+      <label>
+        Nombre:
+        <input type="text" [(ngModel)]="name" name="name" required />
+      </label>
+      <label>
+        Correo:
+        <input type="email" [(ngModel)]="email" name="email" required />
+      </label>
+      <label>
+        Dirección:
+        <input type="text" [(ngModel)]="address" name="address" required />
+      </label>
+      <label>
+        Método de pago:
+        <select [(ngModel)]="paymentMethod" name="paymentMethod">
+          <option>Tarjeta</option>
+          <option>PayPal</option>
+          <option>Contra entrega</option>
+        </select>
+      </label>
+      <button type="submit" class="buy">Comprar</button>
+    </form>
+  } @else {
+    <p>Tu carrito está vacío.</p>
+  }
+</div>
+<app-footer></app-footer>

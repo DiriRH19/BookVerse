@@ -1,0 +1,17 @@
+<section class="book-list">
+  <h2 class="book-list__title">Libros Destacados</h2>
+  <div class="book-list__grid">
+    <a *ngFor="let book of books" [routerLink]="['/book-detail', book.id]" class="book-card-link">
+      <div class="book-card">
+        <div class="book-card__image">
+          <img [src]="book.image" [alt]="book.title" />
+        </div>
+        <div class="book-card__content">
+          <h3 class="book-card__title">{{ book.title }}</h3>
+          <p class="book-card__author">{{ book.author }}</p>
+          <div class="book-card__rating">⭐ {{ book.rating }}</div>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>

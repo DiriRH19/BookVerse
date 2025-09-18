@@ -1,0 +1,31 @@
+<nav class="navbar">
+  <div routerLink="/" class="navbar__logo">
+    <span class="logo-icon">B</span>
+    <span class="logo-text">BookVerse</span>
+  </div>
+  <ul class="navbar__links">
+    <li><a routerLink="/">Inicio</a></li>
+    <li><a routerLink="/catalogo">Catálogo</a></li>
+    <li><a routerLink="/cart">Carrito</a></li>
+    <li><a routerLink="/about">About</a></li>
+    <li><a routerLink="/profile">Perfil</a></li>
+  </ul>
+  <div class="navbar__actions">
+    <button class="theme-toggle" (click)="toggleDarkMode()">
+      @if (isDarkMode()) {
+        🌞 Modo claro
+      } @else {
+        🌙 Modo oscuro
+      }
+    </button>
+    <input type="text" placeholder="Buscar libros, autores, géneros..." />
+    <button class="icon-btn"><i class="fas fa-heart"></i></button>
+    <button class="icon-btn cart-btn" routerLink="/cart">
+      <i class="fas fa-shopping-cart"></i>
+      @if (cartCount() > 0) {
+        <span class="cart-badge">{{ cartCount() }}</span>
+      }
+    </button>
+    <button class="icon-btn"><i class="fas fa-user"></i></button>
+  </div>
+</nav>

@@ -1,0 +1,17 @@
+<app-nav></app-nav>
+<div class="book-detail">
+  <div class="book-detail__container">
+    <div class="book-detail__image">
+      <img [src]="book.image" [alt]="book.title" />
+    </div>
+    <div class="book-detail__info">
+      <h1 class="book-detail__title">{{ book.title }}</h1>
+      <p class="book-detail__author">por {{ book.author }}</p>
+      <p class="book-detail__price">Precio: ${{ book.price }}</p>
+      <p class="book-detail__rating">⭐ {{ book.rating }}</p>
+      <p class="book-detail__description">{{ book.description }}</p>
+      <button (click)="addToCart()" class="book-detail__add-cart">Agregar al carrito</button>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

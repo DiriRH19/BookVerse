@@ -1,0 +1,23 @@
+<a [routerLink]="['/book-detail', book.id]" class="book-card-link">
+  <div class="book-card">
+    <div class="book-card__image">
+      <img [src]="book.image" [alt]="book.title" />
+    </div>
+    <div class="book-card__content">
+      <h3 class="book-card__title">{{ book.title }}</h3>
+      <p class="book-card__author">{{ book.author }}</p>
+      <div 
+        class="book-card__rating" 
+        [ngStyle]="{
+          'color': getRatingColor(book.rating),
+          'font-weight': book.rating >= 4.5 ? 'bold' : 'normal',
+          'background-color': getRatingBackground(book.rating),
+          'padding': '0.3rem 0.6rem',
+          'border-radius': '12px',
+          'display': 'inline-block'
+        }">
+        ⭐ {{ book.rating }}
+      </div>
+    </div>
+  </div>
+</a>

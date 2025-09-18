@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #fafafa;
+  --bg-tertiary: #f8f8f8;
+  --text-primary: #111111;
+  --text-secondary: #666666;
+  --text-tertiary: #777777;
+  --text-muted: #999999;
+  --border-primary: #eaeaea;
+  --border-secondary: #dddddd;
+  --border-focus: #111111;
+  --shadow-light: rgba(0, 0, 0, 0.08);
+  --shadow-medium: rgba(0, 0, 0, 0.15);
+  --shadow-hover: rgba(0, 0, 0, 0.1);
+  --accent-primary: #ff9800;
+  --accent-hover: #e68900;
+  --btn-primary-bg: #000000;
+  --btn-primary-text: #ffffff;
+  --btn-secondary-bg: transparent;
+  --btn-secondary-text: #666666;
+  --btn-secondary-hover: #111111;
+  --input-bg: #ffffff;
+  --input-border: #dddddd;
+  --input-focus: #111111;
+  --input-text: #111111;
+  --input-placeholder: #999999;
+}
+
+.dark-theme {
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2d2d2d;
+  --bg-tertiary: #3a3a3a;
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  --text-tertiary: #aaaaaa;
+  --text-muted: #888888;
+  --border-primary: #404040;
+  --border-secondary: #555555;
+  --border-focus: #ffffff;
+  --shadow-light: rgba(0, 0, 0, 0.3);
+  --shadow-medium: rgba(0, 0, 0, 0.5);
+  --shadow-hover: rgba(0, 0, 0, 0.4);
+  --accent-primary: #ffb74d;
+  --accent-hover: #ffa726;
+  --btn-primary-bg: #ffffff;
+  --btn-primary-text: #000000;
+  --btn-secondary-bg: transparent;
+  --btn-secondary-text: #cccccc;
+  --btn-secondary-hover: #ffffff;
+  --input-bg: #2d2d2d;
+  --input-border: #555555;
+  --input-focus: #ffffff;
+  --input-text: #ffffff;
+  --input-placeholder: #888888;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
