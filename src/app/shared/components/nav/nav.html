@@ -18,7 +18,14 @@
         🌙 Modo oscuro
       }
     </button>
-    <input type="text" placeholder="Buscar libros, autores, géneros..." />
+    @if (isOnCatalog()) {
+      <input
+        type="text"
+        placeholder="Buscar libros, autores, géneros..."
+        [value]="getQuery()"
+        (input)="onSearchInput($any($event.target).value)"
+      />
+    }
     <button class="icon-btn"><i class="fas fa-heart"></i></button>
     <button class="icon-btn cart-btn" routerLink="/cart">
       <i class="fas fa-shopping-cart"></i>

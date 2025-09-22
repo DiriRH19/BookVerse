@@ -5,7 +5,7 @@
     <p>Explora nuestra colección de libros destacados en BookVerse.</p>
   </section>
   <section class="catalog__grid">
-    @for (book of books; track book.id) {
+    @for (book of filtered; track book.id) {
       <app-book-card 
         [book]="book">
       </app-book-card>

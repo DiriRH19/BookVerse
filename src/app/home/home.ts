@@ -4,6 +4,7 @@ import { Footer } from '../shared/components/footer/footer';
 import { Banner } from '../banner/banner';
 import { BookList } from '../book-list/book-list';
 import { Catalog } from '../catalog/catalog';
+import { BooksService, BookRecord } from '../shared/services/books.service';
 
 @Component({
   selector: 'app-home',
@@ -13,30 +14,19 @@ import { Catalog } from '../catalog/catalog';
   styleUrl: './home.css'
 })
 export class Home {
-  featuredBooks = [
-    {
-      title: 'El Principito',
-      author: 'Antoine de Saint-Exupéry',
-      image: 'https://res.cloudinary.com/dgaxlowpd/image/upload/v1757985764/elprincipito_xpebz5.png',
-      rating: 4.8,
-    },
-    {
-      title: 'Cien años de soledad',
-      author: 'Gabriel García Márquez',
-      image: 'https://res.cloudinary.com/dgaxlowpd/image/upload/v1757985764/cienan%CC%83osdesoledad_taglxv.png',
-      rating: 4.9,
-    },
-    {
-      title: 'Don Quijote de la Mancha',
-      author: 'Miguel de Cervantes',
-      image: 'https://res.cloudinary.com/dgaxlowpd/image/upload/v1757985766/quijotedelamancha_h0t6k8.png',
-      rating: 4.7,
-    },
-    {
-      title: 'La sombra del viento',
-      author: 'Carlos Ruiz Zafón',
-      image: 'https://res.cloudinary.com/dgaxlowpd/image/upload/v1757985765/lasombradelviento_ka4imk.png',
-      rating: 4.6,
-    },
-  ].map((book, index) => ({ ...book, id: index + 1 }));
+  featuredBooks: BookRecord[] = [];
+
+  constructor(private readonly booksService: BooksService) {
+    const all = this.booksService.getBooks();
+    this.featuredBooks = this.pickRandom(all, 4);
+  }
+
+  private pickRandom<T>(source: T[], count: number): T[] {
+    const copy = [...source];
+    for (let i = copy.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy.slice(0, Math.min(count, copy.length));
+  }
 }

@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CartService } from '../cart/cart.services';
 import { Nav } from '../shared/components/nav/nav';
 import { Footer } from '../shared/components/footer/footer';
-import { Catalog } from '../catalog/catalog';
+import { BooksService, BookRecord } from '../shared/services/books.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -14,13 +14,18 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule, Nav, Footer]
 })
 export class BookDetail implements OnInit {
-  book: any;
-  books = new Catalog().books;
+  book: BookRecord | undefined;
+  books: BookRecord[] = [];
 
-  constructor(private route: ActivatedRoute, private cartService: CartService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private cartService: CartService,
+    private booksService: BooksService,
+  ) {}
 
   ngOnInit(): void {
     const id = +this.route.snapshot.paramMap.get('id')!;
+    this.books = this.booksService.getBooks();
     this.book = this.books.find(b => b.id === id);
   }
 
